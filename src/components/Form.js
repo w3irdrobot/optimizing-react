@@ -10,9 +10,9 @@ class Form extends React.Component {
   }
 
   updateColor = e => {
-    this.setState({
-      color: e.target.value
-    });
+    const color = e.target.value;
+
+    this.setState({ color });
   }
 
   onSubmit = e => {
@@ -21,8 +21,10 @@ class Form extends React.Component {
     const { color } = this.state;
     const { onSubmit } = this.props;
 
-    onSubmit(color);
-    this.setState({ color: '' });
+    if (color) {
+      onSubmit(color);
+      this.setState({ color: '' });
+    }
   }
 
   render() {

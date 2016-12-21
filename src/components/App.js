@@ -5,22 +5,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      characters: props.characters,
-      color: 'white'
-    };
+    this.state = { color: 'white' };
   }
 
-  onSubmit = color => {
-    this.setState({
-      color
-    });
+  onFormSubmit = color => {
+    this.setState({ color });
   }
 
   render() {
+    const { color } = this.state;
+    const { characters } = this.props;
+
     return <div id="container">
       <div id="form-container">
-        <Form onSubmit={this.onSubmit} />
+        <Form onSubmit={this.onFormSubmit} />
+      </div>
+      <div id="characters-container">
+        <CharacterList characters={characters} color={color} />
       </div>
     </div>;
   }

@@ -1,29 +1,33 @@
 const webpack = require('webpack');
-const path = require('path');
+const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'inline-source-map',
   entry: [
     'react-hot-loader/patch',
-    path.resolve(__dirname, 'src', 'app.js'),
+    resolve(__dirname, 'src', 'app.js'),
   ],
   output: {
     filename: '[name].[hash].bundle.js',
-    path: path.resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: [
+          'babel-loader'
+        ]
       }
     ]
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html')
+      template: resolve(__dirname, 'src', 'index.html')
     })
   ]
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.css';
 
 class Form extends React.Component {
   constructor(props) {
@@ -30,9 +31,9 @@ class Form extends React.Component {
   render() {
     const { color } = this.state;
 
-    return <form onSubmit={this.onSubmit}>
-      <label htmlFor="color">Color</label>&nbsp;
-      <input type="text" id="color" value={color} onInput={this.updateColor} />
+    return <form onSubmit={this.onSubmit} className={styles.form}>
+      <label htmlFor="color">Color:</label>&nbsp;
+      <input type="text" id="color" value={color} onInput={this.updateColor} />&nbsp;
       <button type="submit">Change Color</button>
     </form>;
   }

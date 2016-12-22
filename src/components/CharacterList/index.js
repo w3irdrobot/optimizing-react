@@ -19,13 +19,21 @@ class CharacterList extends React.Component {
     };
   }
 
+  removeCharacter = characterIndex => () => {
+    const { characters } = this.state;
+
+    characters.splice(characterIndex, 1);
+
+    this.setState({ characters });
+  }
+
   render() {
     const { characters } = this.state;
     const { color } = this.props;
 
     return <div className={styles.characterList}>
       {characters.map((c, i) =>
-        <Character character={c} style={getStyles(color, i)} />
+        <Character character={c} style={getStyles(color, i)} onClick={this.removeCharacter(i)} />
       )}
     </div>
   }

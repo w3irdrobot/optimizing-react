@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import CharacterList from './CharacterList';
+import PerfProfiler from './PerfProfiler';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
     const { characters } = this.props;
 
     return <div id="container">
+      <PerfProfiler />
       <div id="form-container">
         <Form onSubmit={this.onFormSubmit} />
       </div>

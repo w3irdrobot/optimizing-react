@@ -2,7 +2,7 @@ import React from 'react';
 import Perf from 'react-addons-perf';
 import styles from './styles.css';
 
-class PerfProfiler extends React.Component {
+class PerfProfiler extends React.PureComponent {
   constructor(props) {
     super(props);
 

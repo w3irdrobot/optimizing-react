@@ -2,15 +2,7 @@ import React from 'react';
 import Character from '../Character';
 import styles from './styles.css';
 
-const getStyles = (color, index) => {
-  if (index % 3 === 0) {
-    return { backgroundColor: color };
-  }
-
-  return { backgroundColor: '' };
-};
-
-class CharacterList extends React.Component {
+class CharacterList extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -19,12 +11,12 @@ class CharacterList extends React.Component {
     };
   }
 
-  removeCharacter = characterIndex => () => {
+  removeCharacter = characterName => {
     const { characters } = this.state;
 
-    characters.splice(characterIndex, 1);
-
-    this.setState({ characters });
+    this.setState({
+      characters: characters.filter(c => c.name !== characterName)
+    });
   }
 
   render() {
@@ -33,7 +25,11 @@ class CharacterList extends React.Component {
 
     return <div className={styles.characterList}>
       {characters.map((c, i) =>
-        <Character character={c} style={getStyles(color, i)} onClick={this.removeCharacter(i)} />
+        <Character
+          key={c.name}
+          character={c}
+          backgroundColor={i % 3 === 0 ? color : 'white'}
+          onClick={this.removeCharacter} />
       )}
     </div>
   }

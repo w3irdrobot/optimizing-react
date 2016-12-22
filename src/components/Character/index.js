@@ -1,14 +1,20 @@
 import React from 'react';
 import styles from './styles.css';
 
-class Character extends React.Component {
+class Character extends React.PureComponent {
+  onClick = () => {
+    const { character, onClick } = this.props;
+
+    onClick(character.name);
+  }
+
   render() {
-    const { character, style, onClick } = this.props;
+    const { character, backgroundColor } = this.props;
 
     return <div
       className={styles.character}
-      style={style}
-      onClick={onClick}>
+      style={{ backgroundColor }}
+      onClick={this.onClick}>
       <p>{character.name}</p>
     </div>;
   }

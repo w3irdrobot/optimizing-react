@@ -21,6 +21,13 @@ module.exports = {
         use: [
           'babel-loader'
         ]
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          'style-loader?sourceMap',
+          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]&camelCase'
+        ]
       }
     ]
   },
